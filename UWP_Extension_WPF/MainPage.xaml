@@ -9,6 +9,9 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <TextBox x:Name="tbRequests" HorizontalAlignment="Left" Margin="208,155,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
+        <TextBox x:Name="tbResult" HorizontalAlignment="Left" Margin="208,0,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20"/>
+        <TextBox x:Name="tbKey" HorizontalAlignment="Left" Margin="208,314,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
 
     </Grid>
 </Page>
