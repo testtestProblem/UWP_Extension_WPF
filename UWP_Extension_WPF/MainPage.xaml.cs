@@ -88,10 +88,10 @@ namespace UWP_Extension_WPF
         /// <summary>
         /// Send request to query the registry
         /// </summary>
-        private async void btnClick_ReadKey(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
             ValueSet request = new ValueSet();
-            request.Add("KEY", tbKey.Text);
+            request.Add("KEY", "abcd");
             AppServiceResponse response = await App.Connection.SendMessageAsync(request);
 
             // display the response key/value pairs
@@ -129,6 +129,7 @@ namespace UWP_Extension_WPF
                 //btnRegKey.IsEnabled = true;
             });
         }
+        
     }
 
 }

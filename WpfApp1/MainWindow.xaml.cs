@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,6 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
-
         private AppServiceConnection connection = null;
 
         public MainWindow()
@@ -41,7 +41,7 @@ namespace WpfApp1
             connection = new AppServiceConnection();
             connection.AppServiceName = "SampleInteropService";
             connection.PackageFamilyName = Package.Current.Id.FamilyName;
-            //connection.RequestReceived += Connection_RequestReceived;
+            connection.RequestReceived += Connection_RequestReceived;
             connection.ServiceClosed += Connection_ServiceClosed;
 
             AppServiceConnectionStatus status = await connection.OpenAsync();
@@ -75,7 +75,29 @@ namespace WpfApp1
             double result = (double)response.Message["RESULT"];
             tbResult.Content = result.ToString();
         }
-    }
 
-    
+        /// <summary>
+        /// Handles the event when the desktop process receives a request from the UWP app
+        /// </summary>
+        private async void Connection_RequestReceived(AppServiceConnection sender, AppServiceRequestReceivedEventArgs args)
+        {
+            // retrive the reg key name from the ValueSet in the request
+            string key = args.Request.Message["KEY"] as string;
+            if (key == "abcd")
+            {
+                // compose the response as ValueSet
+                ValueSet response = new ValueSet();
+                response.Add("GOOD", "KEY IS FOUNDED ^^");
+
+                // send the response back to the UWP
+                await args.Request.SendResponseAsync(response);
+            }
+            else
+            {
+                ValueSet response = new ValueSet();
+                response.Add("ERROR", "INVALID REQUEST");
+                await args.Request.SendResponseAsync(response);
+            }
+        }
+    }
 }
