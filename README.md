@@ -4,7 +4,8 @@ But it can not support a lot of WIN32 function.
 That is why we need UWP extention to unlimited it ability. 
 
 # Project describe
-* Paltform: visual studio 2019  
+* Testing paltform: visual studio 2019
+* Minimum requirement: Win10, version 1809
 * Function describe: UWP through Windows Desktop Extensions for the UWP tool side loading WPF. Uwp can communicate with WPF, WPF can reply it.  
 * Compile sample: UWP can not run at any CPU, and target should set Windows Application Packaging Project.  
 ![image](https://github.com/testtestProblem/UWP_extention/assets/107662393/b60b14bc-4c7e-4bba-9e72-c146665b3147)
